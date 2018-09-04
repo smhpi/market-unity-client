@@ -1,6 +1,6 @@
 import React , {Component} from 'react';
 import PropTypes from 'prop-types';
-import Product from './product';
+import Product from './Product';
 import Pagination from 'react-js-pagination';
 import { Col, Clearfix } from 'react-bootstrap';
 
