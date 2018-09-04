@@ -3,7 +3,7 @@ import React , { Component } from 'react';
 import FacebookLogin from 'react-facebook-login';
 import { GoogleLogin } from 'react-google-login';
 import { NavLink } from 'react-router-dom';
-import { Button } from 'semantic-ui-react';
+import { Button } from 'react-bootstrap';
 import config from '../lib/config.json';
 
 class Main extends Component{
@@ -39,6 +39,7 @@ class Main extends Component{
         })
     };
 
+
     googleResponse = (response) => {
         const tokenBlob = new Blob([JSON.stringify({access_token: response.accessToken}, null, 2)], {type : 'application/json'});
         const options = {
@@ -57,16 +58,18 @@ class Main extends Component{
         })
         console.log(response);
     };
-
+    
     render(){
-
+        let logo = {fontWeight : "700", fontSize: 40}
+        let styles ={color:"red"};
+        let btn={marginTop: 7};
         return(
             <div>
                 <nav className="navbar navbar-default">
                     <div className="container-fluid">
                             <div className="navbar-header">
-                                <a className="navbar-brand" href="#">
-                                    <img src="../images/logo.png" style={{ maxWidth: 120 }} />
+                                <a className="navbar-brand" href="#" style={logo}>
+                                    Refurb<span style={styles}>IT</span>
                                 </a>
                             </div>
                         <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -75,10 +78,13 @@ class Main extends Component{
                                     <NavLink exact activeClassName="current" to="/">Home</NavLink>
                                 </li>
                                 <li>
-                                    <NavLink exact activeClassName="current" to="/login">Login</NavLink>
+                                    <NavLink exact activeClassName="current" to="/listing">Listing</NavLink>
                                 </li>
                                 <li>
-
+                                    <NavLink exact activeClassName="current" to="/report">Report</NavLink>
+                                </li>
+                                <li>
+                                    <NavLink exact activeClassName="current" to="/setup">Setup</NavLink>
                                 </li>
                             </ul>
                                 {
@@ -86,9 +92,15 @@ class Main extends Component{
                                         <ul className="nav navbar-nav navbar-right">
                                             <li>
                                                 <p className="navbar-text">{this.state.user.email}!</p>
-                                                <Button id="login-button" primary onClick={this.logout}>Logout</Button>
+                                                <Button id="login-button" onClick={this.logout} style={btn}>Logout</Button>
                                             </li>
-                                        </ul> ) : null
+                                        </ul> ) : (
+                                        <ul className="nav navbar-nav navbar-right">
+                                            <li>
+                                                <NavLink exact activeClassName="current" to="/login">Login</NavLink>
+                                            </li>
+                                        </ul>
+                                        )
                                 }
                         </div>
                      </div>   
@@ -100,17 +112,47 @@ class Main extends Component{
                         </div>
                     ) : (
                         <div>
-                            <FacebookLogin
-                                appId={config.FACEBOOK_APP_ID}
-                                autoLoad={false}
-                                fields="name,email,picture"
-                                callback={this.facebookResponse} />
-                            <GoogleLogin
-                                clientId={config.GOOGLE_CLIENT_ID}
-                                buttonText="Login"
-                                onSuccess={this.googleResponse}
-                                onFailure={this.onFailure}
-                            />
+                            <div className="container">
+                                <div className="omb_login">
+                                    <h3 className="omb_authTitle">Login or <a href="#">Sign up</a></h3>
+                                    <div className="row omb_row-sm-offset-3 omb_socialButtons">
+                                        <div className="col-xs-4 col-sm-2">
+                                            
+                                                <FacebookLogin
+                                                    appId={config.FACEBOOK_APP_ID}
+                                                    autoLoad={false}
+                                                    fields="name,email,picture"
+                                                    callback={this.facebookResponse}
+                                                    
+                                                />
+            
+                                        </div>
+                                        <div className="col-xs-4 col-sm-2">
+                                            <GoogleLogin
+                                            clientId={config.GOOGLE_CLIENT_ID}
+                                            buttonText="Google+"
+                                            className='btn btn-lg btn-block omb_btn-google'
+                                            onSuccess={this.googleResponse}
+                                            onFailure={this.onFailure}
+                                            />
+                                        </div>
+                                        <div className="col-xs-4 col-sm-2">
+                                        <a href="#" className="btn btn-lg btn-block omb_btn-twitter">
+                                            <i className="fa fa-twitter visible-xs"></i>
+                                            <span className="hidden-xs">Twitter</span>
+                                        </a>
+                                    </div>
+                                    </div>
+
+                                    <div className="row omb_row-sm-offset-3 omb_loginOr">
+                                        <div className="col-xs-12 col-sm-6">
+                                            <hr className="omb_hrOr"></hr>
+                                            <span className="omb_spanOr">or</span>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
                         </div>
                     )
                 }          
