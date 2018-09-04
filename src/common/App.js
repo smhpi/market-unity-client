@@ -6,6 +6,7 @@ import LinkStore from '../stores/LinkStore';
 import Main from './Main';
 import Home from './Home';
 import ProductList from './ProductList';
+import Report from './Report';
 import Login from './Login';
 
 
@@ -42,6 +43,7 @@ let _getAppState = () => {
                                                         products = {this.state.links}
                                                         /> } 
                 />
+                <Route path="/report" component={Report} />
                 <Route path="/login" component={Login} />
                </Main>
 

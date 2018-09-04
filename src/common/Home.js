@@ -14,7 +14,7 @@ class Home extends Component {
             <br />
             <br />
             <br />
-            <Link to="/login">
+            <Link to="/listing">
               <Button
                 bsSize="large"
                 bsStyle="primary">
