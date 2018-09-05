@@ -129,7 +129,9 @@ class Main extends Component{
                                                     autoLoad={false}
                                                     fields="name,email,picture"
                                                     callback={this.facebookResponse}
-                                                    
+                                                    cssClass="btn btn-lg btn-block omb_btn-facebook"
+                                                    icon="fa-facebook"
+                                                    textButton="acebook"
                                                 />
             
                                         </div>
