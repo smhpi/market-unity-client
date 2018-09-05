@@ -7,7 +7,7 @@ import Main from './Main';
 import Home from './Home';
 import ProductList from './ProductList';
 import Report from './Report';
-import Login from './Login';
+import Profile from './Profile';
 
 
 let _getAppState = () => {
@@ -44,7 +44,7 @@ let _getAppState = () => {
                                                         /> } 
                 />
                 <Route path="/report" component={Report} />
-                <Route path="/login" component={Login} />
+                <Route path="/profile" component={Profile} />
                </Main>
 
             </Router>

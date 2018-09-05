@@ -3,7 +3,7 @@ import React , { Component } from 'react';
 import FacebookLogin from 'react-facebook-login';
 import { GoogleLogin } from 'react-google-login';
 import { NavLink } from 'react-router-dom';
-import { Button } from 'react-bootstrap';
+import { Navbar, Button } from 'react-bootstrap';
 import config from '../lib/config.json';
 
 class Main extends Component{
@@ -65,14 +65,17 @@ class Main extends Component{
         let btn={marginTop: 7};
         return(
             <div>
-                <nav className="navbar navbar-default">
-                    <div className="container-fluid">
-                            <div className="navbar-header">
-                                <a className="navbar-brand" href="#" style={logo}>
+                <Navbar default>
+                    
+                            <Navbar.Header>
+                                <Navbar.Brand>
+                                <a href="/" style={logo}>
                                     Refurb<span style={styles}>IT</span>
                                 </a>
-                            </div>
-                        <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                                </Navbar.Brand>
+                                <Navbar.Toggle />
+                            </Navbar.Header>
+                        <Navbar.Collapse>
                             <ul className="nav navbar-nav">
                                 <li>
                                     <NavLink exact activeClassName="current" to="/">Home</NavLink>
@@ -91,20 +94,23 @@ class Main extends Component{
                                     this.state.isAuthenticated ?(
                                         <ul className="nav navbar-nav navbar-right">
                                             <li>
-                                                <p className="navbar-text">{this.state.user.email}!</p>
+                                                <p className="navbar-text">
+                                                    
+                                                    {this.state.user.email}!
+                                                </p>
                                                 <Button id="login-button" onClick={this.logout} style={btn}>Logout</Button>
                                             </li>
                                         </ul> ) : (
                                         <ul className="nav navbar-nav navbar-right">
                                             <li>
-                                                <NavLink exact activeClassName="current" to="/login">Login</NavLink>
+                                                <NavLink exact activeClassName="current" to="/profile">Profile</NavLink>
                                             </li>
                                         </ul>
                                         )
                                 }
-                        </div>
-                     </div>   
-                </nav>
+                        </Navbar.Collapse>
+                        
+                </Navbar>
                 {
                     this.state.isAuthenticated ?(
                         <div className="container">
